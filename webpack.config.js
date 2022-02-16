@@ -1,12 +1,32 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-console.log(path.resolve(__dirname, 'bandle'))
+const pathToBundle = path.resolve(__dirname, 'bundle');
+
 
 module.exports = {
     entry: './src/index.js',
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'MY AWESOME WEBPACK PAGE',
+            template: './index.html'
+        })
+    ],
     output: {
-        filename: 'main.js',
-        path: path.resolve(__dirname, 'bandle')
+        filename: '[contenthash].js',
+        path: pathToBundle,
+        clean: true,
     },
-    mode: 'development'
+    mode: 'development',
+    devServer: {
+        static: pathToBundle,
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader']
+            }
+        ]
+    }
 }
