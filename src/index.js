@@ -1,15 +1,16 @@
-import Component from './Component';
-//const Component = require('./Component');
-import './css/style.css';
-//require('./css/style.css');
-//import {sum, pow, sub, div, multy} from './math';
-import twentyThree, * as MyMath from './math';
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 
-const container = document.getElementById('root');
-//const res = sum(2,2);
-console.log(Component);
 
-console.log(MyMath);
-console.log(twentyThree);
+class HelloWorld extends Component {
 
-container.append(` And hello again`);
+    render () {
+        return React.createElement('p', {title: 'hello'}, 'Hello from react');
+    }
+}
+
+const compHello = React.createElement(HelloWorld);
+
+const root = document.getElementById('root');
+
+ReactDOM.render(compHello, root);
